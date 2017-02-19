@@ -88,5 +88,10 @@ class StockData(object):
 
         print('Finished getting stock data for tickers: {}'.format(self.good_tickers))
 
+        # Remove lines with duplicate index values
+        data = data[~data.index.duplicated(keep='first')]
+
+        # data.to_csv('get_data_test.csv')
+
         return data
 
