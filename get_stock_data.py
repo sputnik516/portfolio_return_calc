@@ -56,7 +56,7 @@ class StockData(object):
 
                 # Get dividend amount, date from Yahoo Finance
                 # Set 'index' to 'Date' to be consistent when joining with other dataframes
-                # Typical responses: DIVIDEND, SPLIT
+                # Typical responses: DIVIDEND
                 divs = web.DataReader(stock.Ticker, 'yahoo-actions', self.start, self.end)
                 divs.index.names = ['Date']
 
