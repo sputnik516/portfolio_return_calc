@@ -135,7 +135,7 @@ if __name__ == '__main__':
     # stock_file = 'test_tickers.csv'
 
     # Set the Start and End date ranges, invested capital
-    start = datetime(2008, 1, 1)
+    start = datetime(2007, 1, 1)
     end = datetime(2016, 12, 31)
     invested_cap = 10000
 
