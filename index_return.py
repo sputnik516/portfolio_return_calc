@@ -1,7 +1,5 @@
 from datetime import datetime
 from get_stock_data import StockData
-import pandas as pd
-import numpy as np
 
 
 class EqualWeightPortfolio(object):
@@ -69,7 +67,10 @@ class EqualWeightPortfolio(object):
             # Increment rebalance period 't'
             t += 1
 
-        # Save to .csv file
+        # Save summary with 'Portfolio_Value' to .csv file
+        data['Portfolio_Value'].to_csv('{}_summary_output.csv'.format(return_type))
+
+        # Save all data to .csv file
         data.to_csv('{}_return_output.csv'.format(return_type))
 
     def less_divs(self, data):
@@ -77,7 +78,7 @@ class EqualWeightPortfolio(object):
         for stock in self.good_tickers:
             try:
                 data['{}_divs_total'.format(stock)] = data['{}_action_amount'.format(stock)][::-1].fillna(0).cumsum()[::-1]
-                data['{}_Adj_Close-test'.format(stock)] = data['{}_Adj_Close'.format(stock)] + data['{}_divs_total'.format(stock)]
+                data['{}_Adj_Close'.format(stock)] = data['{}_Adj_Close'.format(stock)] + data['{}_divs_total'.format(stock)]
 
             except KeyError:
                 # If 'action' column is not found for a stock, then it didn't have a dividend
